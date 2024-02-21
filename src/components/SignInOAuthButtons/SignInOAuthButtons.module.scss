@@ -1,0 +1,14 @@
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.button {
+  background: #1a1a1a;
+  border-radius: 5px;
+  padding: 10px;
+  &:hover {
+    background: #6f6f6f;
+  }
+}

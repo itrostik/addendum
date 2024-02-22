@@ -6,10 +6,13 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: '**.convex.cloud',
-        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.clerk.com',
       },
     ],
-  }
+  },
 };
 
 export default nextConfig;

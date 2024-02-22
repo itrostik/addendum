@@ -14,7 +14,8 @@ export default defineSchema({
     avatar: v.string(),
     name: v.string(),
     like_genres: v.array(v.string()),
-  }),
+    token: v.string(),
+  }).index("token", ["token"]),
   genres: defineTable({
     name: v.string(),
   }),

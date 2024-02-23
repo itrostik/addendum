@@ -1,0 +1,131 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  transition: 1s;
+}
+
+.wrapperClose {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  transition: 1s;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 5px;
+  background: #000;
+  cursor: pointer;
+
+  &:hover {
+    background: #8f00ff;
+  }
+}
+
+.avatar {
+  margin: 5px 0;
+  border-radius: 50%;
+}
+
+.animation {
+  animation: 2s infinite rotate;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.button {
+  padding: 5px;
+  border-radius: 5px;
+
+  &:hover {
+    background: #1a1a1a;
+  }
+}
+
+.lucideOpen {
+  cursor: pointer;
+  color: #6f6f6f;
+
+  &:hover {
+    color: #8f00ff;
+  }
+}
+
+.lucideClose {
+  cursor: pointer;
+  color: #6f6f6f;
+  transform: rotate(180deg);
+
+  &:hover {
+    color: #8f00ff;
+  }
+}
+
+.topOpen {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.bottom {
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.block {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  .lucide {
+    color: #6f6f6f;
+  }
+  &:hover {
+    background: #1a1a1a;
+  }
+}
+
+.lucide {
+  cursor: pointer;
+  color: #6f6f6f;
+}
+
+.title {
+  font-size: 14px;
+  text-wrap: none;
+  //position: absolute;
+  //left: 45px;
+}

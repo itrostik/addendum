@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { ReactNode } from "react";
-import ConvexClientProvider from "@/provider/ConvexClientProvider";
+import ConvexClientProvider from "../provider/ConvexClientProvider";
 
 import "../styles/global.scss";
 

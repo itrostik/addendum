@@ -1,8 +1,8 @@
 import { useSignIn } from "@clerk/nextjs";
 import Image from "next/image";
-import google from "../../../public/google.svg";
-import github from "../../../public/github.svg";
-import apple from "../../../public/apple.svg";
+import google from "../../public/google.svg";
+import github from "../../public/github.svg";
+import apple from "../../public/apple.svg";
 
 import styles from "./SignInOAuthButtons.module.scss";
 

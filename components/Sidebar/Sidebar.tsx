@@ -74,9 +74,9 @@ export default function Sidebar({ user_id }: { user_id: Id<"users"> }) {
           <Image
             src={userLoad}
             alt={"load"}
-            width={30}
-            height={30}
-            className={styles.animation}
+            width={40}
+            height={40}
+            className={styles.block + " " + styles.animation}
           />
         )}
         <Link href={"/"} className={styles.block}>

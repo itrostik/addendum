@@ -15,6 +15,8 @@ export default defineSchema({
     name: v.string(),
     like_genres: v.array(v.string()),
     token: v.string(),
+    description: v.optional(v.string()),
+    review: v.optional(v.float64()),
   }).index("token", ["token"]),
   genres: defineTable({
     name: v.string(),

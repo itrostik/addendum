@@ -1,0 +1,44 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  &:hover {
+    .radio {
+      background: #4b4b4b;
+    }
+    .checked {
+      background: #000000;
+    }
+  }
+}
+
+.radioDefault {
+  opacity: 0;
+  position: absolute;
+}
+
+.radio {
+  width: 17px;
+  height: 17px;
+  background: #343434;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checked {
+  background: #000000;
+}
+
+.circle {
+  background: #8f00ff;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}

@@ -1,0 +1,32 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  &:hover {
+    .checkbox {
+      background: #4b4b4b;
+    }
+    .checked {
+      background: #000000;
+    }
+  }
+}
+
+.checkbox {
+  width: 17px;
+  height: 17px;
+  background: #343434;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checked {
+  background: #000000;
+}

@@ -35,7 +35,7 @@ export default function Checkbox({
           !isChecked ? styles.checkbox : styles.checkbox + " " + styles.checked
         }
       >
-        {isChecked && <Check size={14} color={"#8f00ff"} />}
+        {isChecked && <Check size={14} color={"#8f00ff"} strokeWidth={4} />}
       </div>
       <span>{value}</span>
     </div>

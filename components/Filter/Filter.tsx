@@ -1,18 +1,17 @@
 import styles from "./Filter.module.scss";
-import { Search, SlidersHorizontal } from "lucide-react";
+import { Plus, Search, SlidersHorizontal } from "lucide-react";
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import Checkbox from "../UI/Checkbox/Checkbox";
 import { useState } from "react";
 import Radio from "../UI/Radio/Radio";
 import { price } from "../../constants/price";
+import { typesProduct } from "../../constants/typesProduct";
+import Modal from "../Modal/Modal";
 export default function Filter() {
   const genres = useQuery(api.genres.getAll);
   const [activeCheckbox, setActiveCheckbox] = useState<string[]>([]);
   const [activeRadio, setActiveRadio] = useState<string>("");
-
-  console.log("Checkbox:", activeCheckbox);
-  console.log("Radio:", activeRadio);
 
   return (
     <div className={styles.wrapper}>
@@ -32,6 +31,20 @@ export default function Filter() {
               className={styles.input}
             />
           </label>
+        </div>
+        <div className={styles.types}>
+          <h3 className={styles.title}>Тип объявления</h3>
+          <div className={styles.typesBlock}>
+            {typesProduct?.map((type, id) => (
+              <Checkbox
+                key={id}
+                value={type}
+                id={id}
+                activeCheckbox={activeCheckbox}
+                setActiveCheckbox={setActiveCheckbox}
+              />
+            ))}
+          </div>
         </div>
         <div className={styles.genres}>
           <h3 className={styles.title}>Жанр</h3>

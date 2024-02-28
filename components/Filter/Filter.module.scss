@@ -22,6 +22,14 @@
   flex-direction: column;
   gap: 20px;
   flex: 1 1 auto;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #8f00ff;
+    border-radius: 5px;
+  }
 }
 
 .search {
@@ -51,7 +59,8 @@
 }
 
 .genres,
-.prices {
+.prices,
+.types {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -62,7 +71,8 @@
 }
 
 .genresBlock,
-.pricesBlock {
+.pricesBlock,
+.typesBlock {
   display: flex;
   flex-direction: column;
   align-items: flex-start;

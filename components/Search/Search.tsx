@@ -1,6 +1,6 @@
 import styles from "./Search.module.scss";
 import { SearchIcon } from "lucide-react";
-import React from "react";
+import React, { ChangeEvent } from "react";
 
 export type SearchProps = {
   setValue: React.Dispatch<React.SetStateAction<string>>;
@@ -15,7 +15,9 @@ export default function Search({ setValue }: SearchProps) {
           id={"search"}
           placeholder={"Введите название"}
           className={styles.input}
-          onChange={(event) => setValue(event.target.value)}
+          onInput={(event: ChangeEvent<HTMLInputElement>) =>
+            setValue(event.target.value)
+          }
         />
       </label>
     </div>

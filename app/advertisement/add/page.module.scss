@@ -23,12 +23,25 @@
   font-weight: 600;
 }
 
+.heading2 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
 .title {
   font-size: 20px;
   font-weight: 500;
+  align-self: flex-start;
 }
 
 .search {
   max-width: 500px;
   width: 100%;
+}
+.games {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 20px;
 }

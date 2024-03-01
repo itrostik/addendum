@@ -8,6 +8,8 @@ export default defineSchema({
     image: v.string(),
     name: v.string(),
     rating: v.float64(),
+  }).searchIndex("by_name", {
+    searchField: "name",
   }),
   users: defineTable({
     email: v.string(),

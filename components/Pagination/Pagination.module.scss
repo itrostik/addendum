@@ -1,0 +1,37 @@
+.pagination {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.block {
+  width: 50px;
+  height: 50px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  &:hover {
+    background: #6f6f6f;
+  }
+}
+
+.activeBlock {
+  background: #8f00ff;
+  &:hover {
+    background: #8f00ff;
+  }
+}
+
+.arrow {
+  cursor: pointer;
+  color: #6f6f6f;
+  &:hover {
+    color: #ffffff;
+  }
+}

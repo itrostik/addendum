@@ -23,7 +23,7 @@ export default function Filter() {
         <div className={styles.search}>
           <h3 className={styles.title}>Поиск</h3>
           <label htmlFor="search" className={styles.label}>
-            <Search size={15} color={"#8f00ff"} />
+            <Search size={20} className={styles.searchIcon} id={"searchIcon"} />
             <input
               type="text"
               id={"search"}

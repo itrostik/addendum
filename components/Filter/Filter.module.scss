@@ -95,3 +95,11 @@
   font-size: 16px;
   font-weight: 500;
 }
+
+.searchIcon {
+  color: #6f6f6f;
+}
+
+.label:focus-within .searchIcon {
+  color: #8f00ff;
+}

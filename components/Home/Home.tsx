@@ -8,6 +8,7 @@ import Loading from "../Loading/Loading";
 import Filter from "../Filter/Filter";
 import { Plus } from "lucide-react";
 import Modal from "../Modal/Modal";
+import Link from "next/link";
 
 export default function Home() {
   const store = useMutation(api.users.store);
@@ -37,11 +38,18 @@ export default function Home() {
             <Modal setIsOpen={setIsOpen}>
               <div className={styles.modalContent}>
                 <h1 className={styles.modalTitle}>Что хотите сделать?</h1>
-                <button className={styles.modalButton}>Продать</button>
-                <button className={styles.modalButton}>
+                <Link
+                  href={"/advertisement/add"}
+                  className={styles.modalButton}
+                >
+                  Продать
+                </Link>
+                <Link href={"/auction/add"} className={styles.modalButton}>
                   Выставить на аукцион
-                </button>
-                <button className={styles.modalButton}>Обменять</button>
+                </Link>
+                <Link href={"/exchange/add"} className={styles.modalButton}>
+                  Обменять
+                </Link>
               </div>
             </Modal>
           )}

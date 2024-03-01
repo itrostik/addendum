@@ -38,5 +38,6 @@ export default defineSchema({
     image: v.string(),
     seller: v.id("users"),
     price: v.float64(),
+    is_new: v.boolean(),
   }),
 });

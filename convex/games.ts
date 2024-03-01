@@ -1,12 +1,11 @@
 import { query } from "./_generated/server";
 import { ConvexError, v } from "convex/values";
+import { paginationOptsValidator } from "convex/server";
 
-export const getAll = query({
-  args: {},
-  handler: async (ctx) => {
-    const games = await ctx.db.query("games").collect();
-    if (games.length === 0) throw new ConvexError("Игра не найдены");
-    return games;
+export const getByPage = query({
+  args: { paginationOpts: paginationOptsValidator },
+  handler: async (ctx, args) => {
+    return await ctx.db.query("games").paginate(args.paginationOpts);
   },
 });
 

@@ -1,18 +1,19 @@
 import styles from "./Filter.module.scss";
-import { Plus, Search, SlidersHorizontal } from "lucide-react";
+import { Plus, SlidersHorizontal } from "lucide-react";
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import Checkbox from "../UI/Checkbox/Checkbox";
-import { useState } from "react";
+import React, { useState } from "react";
 import Radio from "../UI/Radio/Radio";
 import { price } from "../../constants/price";
 import { typesProduct } from "../../constants/typesProduct";
-import Modal from "../Modal/Modal";
+import Search from "../Search/Search";
+
 export default function Filter() {
   const genres = useQuery(api.genres.getAll);
   const [activeCheckbox, setActiveCheckbox] = useState<string[]>([]);
   const [activeRadio, setActiveRadio] = useState<string>("");
-
+  const [searchValue, setSearchValue] = useState<string>("");
   return (
     <div className={styles.wrapper}>
       <div className={styles.top}>
@@ -22,15 +23,7 @@ export default function Filter() {
       <div className={styles.info}>
         <div className={styles.search}>
           <h3 className={styles.title}>Поиск</h3>
-          <label htmlFor="search" className={styles.label}>
-            <Search size={20} className={styles.searchIcon} id={"searchIcon"} />
-            <input
-              type="text"
-              id={"search"}
-              placeholder={"Введите название"}
-              className={styles.input}
-            />
-          </label>
+          <Search setValue={setSearchValue} />
         </div>
         <div className={styles.types}>
           <h3 className={styles.title}>Тип объявления</h3>

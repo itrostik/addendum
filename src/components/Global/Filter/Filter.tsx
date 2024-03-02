@@ -1,12 +1,12 @@
 import styles from "./Filter.module.scss";
-import { Plus, SlidersHorizontal } from "lucide-react";
+import { SlidersHorizontal } from "lucide-react";
 import { useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import { api } from "../../../convex/_generated/api";
 import Checkbox from "../UI/Checkbox/Checkbox";
 import React, { useState } from "react";
 import Radio from "../UI/Radio/Radio";
-import { price } from "../../constants/price";
-import { typesProduct } from "../../constants/typesProduct";
+import { price } from "@/constants/price";
+import { typesProduct } from "@/constants/typesProduct";
 import Search from "../Search/Search";
 
 export default function Filter() {

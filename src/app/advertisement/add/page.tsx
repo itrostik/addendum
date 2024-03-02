@@ -14,6 +14,7 @@ import { getByNameGames } from "../../../utils/games/getByNameGames";
 import Skeleton from "react-loading-skeleton";
 import Pagination from "../../../components/Pagination/Pagination";
 import "react-loading-skeleton/dist/skeleton.css";
+import ChosenGame from "../../../components/ChosenGame/ChosenGame";
 
 export default function Page() {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -21,6 +22,8 @@ export default function Page() {
   const [games, setGames] = useState<GameDataType[] | null>(null);
   const [countPage, setCountPage] = useState<number>(1);
   const [count, setCount] = useState<number>(0);
+
+  const [chosenGame, setChosenGame] = useState<Id<"games"> | null>(null);
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -74,39 +77,46 @@ export default function Page() {
       {!isLoading && userId ? (
         <div className={styles.wrapper}>
           <Sidebar user_id={userId} />
-          <div className={styles.content} ref={ref}>
-            <h1 className={styles.heading}>Объявление о продаже</h1>
-            <h3 className={styles.heading2}>Выберите игру</h3>
-            <div className={styles.search}>
-              <Search setValue={setSearchValue} />
+          {!chosenGame ? (
+            <div className={styles.content} ref={ref}>
+              <h1 className={styles.heading}>Объявление о продаже</h1>
+              <h3 className={styles.heading2}>Выберите игру</h3>
+              <div className={styles.search}>
+                <Search setValue={setSearchValue} />
+              </div>
+              {games ? (
+                <Games
+                  games={games[countPage - 1]}
+                  setChosenGame={setChosenGame}
+                />
+              ) : (
+                <>
+                  <h3 className={styles.title}>Список игр</h3>
+                  <div className={styles.games}>
+                    {[...new Array(count)].map((_) => (
+                      <Skeleton
+                        baseColor={"#eeeeee"}
+                        highlightColor={"#ffffff"}
+                        width={200}
+                        height={200}
+                        borderRadius={5}
+                        duration={1.5}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+              {games && games.length > 1 && (
+                <Pagination
+                  countPage={countPage}
+                  setCountPage={setCountPage}
+                  itemLength={games.length!}
+                />
+              )}
             </div>
-            {games ? (
-              <Games games={games[countPage - 1]} />
-            ) : (
-              <>
-                <h3 className={styles.title}>Список игр</h3>
-                <div className={styles.games}>
-                  {[...new Array(count)].map((_) => (
-                    <Skeleton
-                      baseColor={"#eeeeee"}
-                      highlightColor={"#ffffff"}
-                      width={200}
-                      height={200}
-                      borderRadius={5}
-                      duration={1.5}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-            {games && games.length > 1 && (
-              <Pagination
-                countPage={countPage}
-                setCountPage={setCountPage}
-                itemLength={games.length!}
-              />
-            )}
-          </div>
+          ) : (
+            <ChosenGame game_id={chosenGame} />
+          )}
         </div>
       ) : (
         <Loading />

@@ -1,7 +1,10 @@
 import styles from "./Games.module.scss";
 
 import Image from "next/image";
-import { GameDataType } from "../../types/GameDataType";
+import { GameDataType } from "@/types/GameDataType";
+import React from "react";
+import { Id } from "../../../convex/_generated/dataModel";
+import Link from "next/link";
 
 export type GamesProps = {
   games: GameDataType;
@@ -15,7 +18,11 @@ export default function Games({ games }: GamesProps) {
         {games && games.data ? (
           <div className={styles.games}>
             {games.data.map((game) => (
-              <div className={styles.game} key={game._id}>
+              <Link
+                href={`/advertisement/add/${game._id}`}
+                className={styles.game}
+                key={game._id}
+              >
                 <Image
                   src={game.image}
                   alt={"game"}
@@ -24,7 +31,7 @@ export default function Games({ games }: GamesProps) {
                   priority
                   className={styles.gameImage}
                 />
-              </div>
+              </Link>
             ))}
           </div>
         ) : (

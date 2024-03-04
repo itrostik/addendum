@@ -2,7 +2,7 @@
 import { useConvexAuth } from "convex/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import Loading from "../components/Loading/Loading";
+import Loading from "@/components/Global/Loading/Loading";
 import Home from "../components/Home/Home";
 
 export default function Page() {

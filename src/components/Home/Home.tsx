@@ -1,13 +1,13 @@
 import styles from "./Home.module.scss";
 import { useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import { api } from "../../../convex/_generated/api";
 import { useEffect, useState } from "react";
-import { Id } from "../../convex/_generated/dataModel";
-import Sidebar from "../Sidebar/Sidebar";
-import Loading from "../Loading/Loading";
-import Filter from "../Filter/Filter";
+import { Id } from "../../../convex/_generated/dataModel";
+import Sidebar from "@/components/Global/Sidebar/Sidebar";
+import Loading from "@/components/Global/Loading/Loading";
+import Filter from "@/components/Global/Filter/Filter";
 import { Plus } from "lucide-react";
-import Modal from "../Modal/Modal";
+import Modal from "@/components/UI/Modal/Modal";
 import Link from "next/link";
 
 export default function Home() {

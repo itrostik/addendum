@@ -2,8 +2,8 @@
 import { useEffect } from "react";
 import { useConvexAuth, useMutation } from "convex/react";
 import { useRouter } from "next/navigation";
-import Loading from "../../components/Loading/Loading";
-import { api } from "../../convex/_generated/api";
+import Loading from "@/components/Global/Loading/Loading";
+import { api } from "../../../convex/_generated/api";
 
 export default function Page() {
   const { isAuthenticated } = useConvexAuth();

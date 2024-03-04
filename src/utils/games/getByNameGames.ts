@@ -1,5 +1,5 @@
 import { ConvexHttpClient } from "convex/browser";
-import { api } from "../../convex/_generated/api";
+import { api } from "../../../convex/_generated/api";
 
 const client = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
@@ -23,7 +23,6 @@ export async function getByNameGames(searchValue: string, count: number) {
       results.push({ data, page: countPage });
       countPage++;
     }
-    console.log(countPage);
   }
 
   return results;

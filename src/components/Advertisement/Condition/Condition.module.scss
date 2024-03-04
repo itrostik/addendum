@@ -1,0 +1,38 @@
+.wrapper {
+}
+
+.input[type="number"]::-webkit-outer-spin-button,
+.input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none; // Yeah, yeah everybody write about it
+}
+
+.input[type="number"],
+.input[type="number"]:hover,
+.input[type="number"]:focus {
+  appearance: none;
+  -moz-appearance: textfield;
+}
+
+.input {
+  max-width: 100px;
+  background: #1a1a1a;
+  border-radius: 5px;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+}

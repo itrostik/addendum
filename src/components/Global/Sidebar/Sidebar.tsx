@@ -1,7 +1,7 @@
 import styles from "./Sidebar.module.scss";
-import { Id } from "../../../convex/_generated/dataModel";
+import { Id } from "../../../../convex/_generated/dataModel";
 import { useQuery } from "convex/react";
-import { api } from "../../../convex/_generated/api";
+import { api } from "../../../../convex/_generated/api";
 import Image from "next/image";
 import userLoad from "/public/user-load.svg";
 import logo from "/public/logo.svg";

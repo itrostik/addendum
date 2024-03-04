@@ -3,7 +3,7 @@ import styles from "./Games.module.scss";
 import Image from "next/image";
 import { GameDataType } from "@/types/GameDataType";
 import React from "react";
-import { Id } from "../../../convex/_generated/dataModel";
+import { Id } from "../../../../convex/_generated/dataModel";
 import Link from "next/link";
 
 export type GamesProps = {

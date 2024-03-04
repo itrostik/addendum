@@ -1,7 +1,7 @@
 import styles from "./Profile.module.scss";
-import { Doc } from "../../../convex/_generated/dataModel";
+import { Doc } from "../../../../convex/_generated/dataModel";
 import { useConvexAuth, useMutation } from "convex/react";
-import { api } from "../../../convex/_generated/api";
+import { api } from "../../../../convex/_generated/api";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import star from "/public/star.svg";

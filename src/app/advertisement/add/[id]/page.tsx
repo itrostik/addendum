@@ -7,6 +7,7 @@ import Sidebar from "@/components/Global/Sidebar/Sidebar";
 import useUser from "@/hooks/useUser";
 import Loading from "@/components/Global/Loading/Loading";
 import Condition from "@/components/Advertisement/Condition/Condition";
+import Switch from "@/components/UI/Switch/Switch";
 
 export default function Page({ params }: { params: { id: Id<"games"> } }) {
   const userId = useUser();

@@ -1,4 +1,5 @@
 import styles from "./Condition.module.scss";
+import Switch from "@/components/UI/Switch/Switch";
 
 export default function Condition() {
   return (
@@ -8,7 +9,8 @@ export default function Condition() {
         <input type={"number"} className={styles.value + " " + styles.input} />
       </div>
       <div className={styles.state}>
-        <h3 className={styles.heading}>Состояние</h3>
+        <h3 className={styles.heading}>Новое</h3>
+        <Switch />
       </div>
     </div>
   );

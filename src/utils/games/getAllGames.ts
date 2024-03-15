@@ -1,21 +1,11 @@
-import { ConvexHttpClient } from "convex/browser";
-import { api } from "../../../convex/_generated/api";
+import { collection, DocumentData, getDocs } from "@firebase/firestore";
+import { db } from "../../../firebase/firestore";
 
-const client = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
-
-export async function getAllGames(count: number) {
-  let continueCursor = null;
-  let isDone = false;
-  let page;
-  let countPage = 1;
-  const results = [];
-  while (!isDone) {
-    ({ continueCursor, isDone, page } = await client.query(api.games.getAll, {
-      paginationOpts: { numItems: count, cursor: continueCursor },
-    }));
-    results.push({ data: [...page], page: countPage });
-    countPage++;
-  }
-
-  return results;
+export async function getAllGames() {
+  const querySnapshot = await getDocs(collection(db, "games"));
+  const games: DocumentData[] = [];
+  querySnapshot.forEach((doc) => {
+    games.push(doc.data());
+  });
+  return games;
 }

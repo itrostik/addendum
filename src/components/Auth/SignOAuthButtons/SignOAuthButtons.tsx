@@ -9,7 +9,7 @@ import AuthLoading from "@/components/Auth/AuthLoading/AuthLoading";
 export const SignOAuthButtons = ({
   isHaveAccount,
 }: {
-  isHaveAccount: boolean;
+  isHaveAccount?: boolean;
 }) => {
   const { signIn, isLoaded } = useSignIn();
   const { signUp } = useSignUp();

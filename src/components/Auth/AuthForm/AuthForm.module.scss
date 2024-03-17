@@ -1,0 +1,50 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.label {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #6f6f6f;
+  padding: 20px;
+  cursor: text;
+  &:focus-within {
+    border: 1px solid #8f00ff;
+    .input::placeholder {
+      color: #8f00ff;
+    }
+  }
+}
+
+.button {
+  max-width: 200px;
+  background: #2e2e2e;
+  padding: 10px;
+  border-radius: 5px;
+  color: #6f6f6f;
+  cursor: not-allowed;
+}
+
+.activeButton {
+  cursor: pointer;
+  background: #6f6f6f;
+  color: #ffffff;
+  &:hover {
+    background: #8f00ff;
+  }
+}
+
+.input {
+  width: 100%;
+}
+
+.info {
+  margin: -10px 0 0 0;
+  padding: 0 0 0 5px;
+  color: #6f6f6f;
+  align-self: flex-start;
+}

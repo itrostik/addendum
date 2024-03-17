@@ -1,22 +1,21 @@
 "use client";
-import { useConvexAuth } from "convex/react";
+
+import Home from "../components/Home/Home";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Loading from "@/components/Global/Loading/Loading";
-import Home from "../components/Home/Home";
 
 export default function Page() {
-  const { isAuthenticated, isLoading } = useConvexAuth();
-
+  const { status } = useSession();
   const router = useRouter();
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) router.push("/auth");
-  }, [isLoading, isAuthenticated]);
 
-  return (
-    <>
-      {isAuthenticated && <Home />}
-      {isLoading && <Loading />}
-    </>
-  );
+  useEffect(() => {
+    if (status === "unauthenticated") router.push("/auth");
+    return () => {};
+  }, [status]);
+
+  if (status === "loading") return <Loading />;
+  else if (status === "authenticated") return <Home />;
+  return null;
 }

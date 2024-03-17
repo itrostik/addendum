@@ -5,12 +5,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**.convex.cloud',
+        hostname: '**.**.com'
       },
       {
         protocol: 'https',
-        hostname: '**.clerk.com',
-      },
+        hostname: '**.**.org'
+      }
     ],
   },
 };

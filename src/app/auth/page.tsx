@@ -1,36 +1,25 @@
 "use client";
 import { SignOAuthButtons } from "@/components/Auth/SignOAuthButtons/SignOAuthButtons";
 import styles from "./page.module.scss";
-import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import AuthForm from "@/components/Auth/AuthForm/AuthForm";
 export default function Page() {
-  const [isHaveAccount, setIsHaveAccount] = useState(false);
+  const { status } = useSession();
+  const router = useRouter();
+  useEffect(() => {
+    if (status === "authenticated") router.push("/");
+  }, [status]);
+
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.title}>{isHaveAccount ? "Вход" : "Регистрация"}</h1>
-      <SignOAuthButtons isHaveAccount={isHaveAccount} />
-      <h3 className={styles.subtitle}>
-        {isHaveAccount ? (
-          <span>
-            Ещё нет аккаунта?{" "}
-            <span
-              className={styles.head}
-              onClick={() => setIsHaveAccount(false)}
-            >
-              Зарегистрироваться
-            </span>
-          </span>
-        ) : (
-          <span>
-            Уже есть аккаунт?{" "}
-            <span
-              className={styles.head}
-              onClick={() => setIsHaveAccount(true)}
-            >
-              Войти
-            </span>
-          </span>
-        )}
-      </h3>
+      <div className={styles.modal}>
+        <h1 className={styles.title}>Аутентификация</h1>
+        <AuthForm />
+        <span>или</span>
+        <SignOAuthButtons />
+      </div>
     </div>
   );
 }

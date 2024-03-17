@@ -1,8 +1,6 @@
 "use client";
 
 import styles from "./page.module.scss";
-import { Id } from "../../../../../convex/_generated/dataModel";
-import ChosenGame from "@/components/Advertisement/ChosenGame/ChosenGame";
 import Sidebar from "@/components/Global/Sidebar/Sidebar";
 import useUser from "@/hooks/useUser";
 import Loading from "@/components/Global/Loading/Loading";

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { ReactNode } from "react";
-import ConvexClientProvider from "../provider/ConvexClientProvider";
 
 import "../styles/global.scss";
+import NextAuthProvider from "@/providers/NextAuthProvider";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -18,9 +18,9 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={montserrat.className}>
-        <ConvexClientProvider>{children}</ConvexClientProvider>
+        <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>
   );

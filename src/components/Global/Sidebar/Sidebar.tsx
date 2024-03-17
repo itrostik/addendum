@@ -1,7 +1,4 @@
 import styles from "./Sidebar.module.scss";
-import { Id } from "../../../../convex/_generated/dataModel";
-import { useQuery } from "convex/react";
-import { api } from "../../../../convex/_generated/api";
 import Image from "next/image";
 import userLoad from "/public/user-load.svg";
 import logo from "/public/logo.svg";
@@ -16,12 +13,13 @@ import {
   Settings,
 } from "lucide-react";
 import { useState } from "react";
-import { SignOutButton } from "@clerk/nextjs";
+import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
-export default function Sidebar({ user_id }: { user_id: Id<"users"> }) {
-  const user = useQuery(api.users.getById, { user_id });
-
+export default function Sidebar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const { data, status } = useSession();
 
   return (
     <div className={isOpen ? styles.wrapper : styles.wrapperClose}>
@@ -59,16 +57,16 @@ export default function Sidebar({ user_id }: { user_id: Id<"users"> }) {
         </Link>
       </div>
       <div className={styles.bottom}>
-        {user ? (
+        {data && data.user?.image ? (
           <Link href={"/account"} className={styles.block}>
             <Image
-              src={user.avatar}
+              src={data.user.image}
               alt={"user"}
               width={30}
               height={30}
               className={styles.avatar}
             />
-            {isOpen && <span className={styles.title}>{user.name}</span>}
+            {isOpen && <span className={styles.title}>{data.user.name}</span>}
           </Link>
         ) : (
           <Image
@@ -83,12 +81,10 @@ export default function Sidebar({ user_id }: { user_id: Id<"users"> }) {
           <Settings size={30} className={styles.lucide} />
           {isOpen && <span className={styles.title}>Настройки</span>}
         </Link>
-        <SignOutButton>
-          <div className={styles.block}>
-            <LogOut size={30} className={styles.lucide} />
-            {isOpen && <span className={styles.title}>Выйти</span>}
-          </div>
-        </SignOutButton>
+        <div className={styles.block} onClick={() => signOut()}>
+          <LogOut size={30} className={styles.lucide} />
+          {isOpen && <span className={styles.title}>Выйти</span>}
+        </div>
       </div>
     </div>
   );

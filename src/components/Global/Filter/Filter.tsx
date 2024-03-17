@@ -1,7 +1,5 @@
 import styles from "./Filter.module.scss";
 import { SlidersHorizontal } from "lucide-react";
-import { useQuery } from "convex/react";
-import { api } from "../../../../convex/_generated/api";
 import Checkbox from "../../UI/Checkbox/Checkbox";
 import React, { useState } from "react";
 import Radio from "../../UI/Radio/Radio";
@@ -10,7 +8,6 @@ import { typesProduct } from "@/constants/typesProduct";
 import Search from "@/components/UI/Search/Search";
 
 export default function Filter() {
-  const genres = useQuery(api.genres.getAll);
   const [activeCheckbox, setActiveCheckbox] = useState<string[]>([]);
   const [activeRadio, setActiveRadio] = useState<string>("");
   const [searchValue, setSearchValue] = useState<string>("");
@@ -42,15 +39,15 @@ export default function Filter() {
         <div className={styles.genres}>
           <h3 className={styles.title}>Жанр</h3>
           <div className={styles.genresBlock}>
-            {genres?.map((genre, id) => (
-              <Checkbox
-                key={id}
-                value={genre.name}
-                id={id}
-                activeCheckbox={activeCheckbox}
-                setActiveCheckbox={setActiveCheckbox}
-              />
-            ))}
+            {/*{genres?.map((genre, id) => (*/}
+            {/*  <Checkbox*/}
+            {/*    key={id}*/}
+            {/*    value={genre.name}*/}
+            {/*    id={id}*/}
+            {/*    activeCheckbox={activeCheckbox}*/}
+            {/*    setActiveCheckbox={setActiveCheckbox}*/}
+            {/*  />*/}
+            {/*))}*/}
           </div>
         </div>
         <div className={styles.prices}>

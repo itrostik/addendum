@@ -3,8 +3,8 @@ import { SlidersHorizontal } from "lucide-react";
 import Checkbox from "../../UI/Checkbox/Checkbox";
 import React, { useState } from "react";
 import Radio from "../../UI/Radio/Radio";
-import { price } from "@/constants/price";
-import { typesProduct } from "@/constants/typesProduct";
+import { PRICE } from "@/constants/price";
+import { TYPES_PRODUCT } from "@/constants/typesProduct";
 import Search from "@/components/UI/Search/Search";
 
 export default function Filter() {
@@ -25,7 +25,7 @@ export default function Filter() {
         <div className={styles.types}>
           <h3 className={styles.title}>Тип объявления</h3>
           <div className={styles.typesBlock}>
-            {typesProduct?.map((type, id) => (
+            {TYPES_PRODUCT?.map((type, id) => (
               <Checkbox
                 key={id}
                 value={type}
@@ -53,7 +53,7 @@ export default function Filter() {
         <div className={styles.prices}>
           <h3 className={styles.title}>Цена</h3>
           <div className={styles.pricesBlock}>
-            {price.map((item, id) => (
+            {PRICE.map((item, id) => (
               <Radio
                 key={id}
                 id={`${id}`}

@@ -15,6 +15,7 @@ import {
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
+import { DEFAULT_USER_AVATAR } from "@/constants/defaultUserAvatar";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -57,7 +58,7 @@ export default function Sidebar() {
         </Link>
       </div>
       <div className={styles.bottom}>
-        {data && data.user?.image ? (
+        {data && data.user.image ? (
           <Link href={"/account"} className={styles.block}>
             <Image
               src={data.user.image}

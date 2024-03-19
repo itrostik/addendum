@@ -1,25 +1,31 @@
 import styles from "./AuthForm.module.scss";
 import { signIn } from "next-auth/react";
-import { MouseEvent, useRef, useState } from "react";
+import { Dispatch, MouseEvent, SetStateAction, useRef, useState } from "react";
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const passwordRegex = /^[a-zA-Z0-9_-]{5,}$/;
+const passwordRegex = /^[a-zA-Z0-9_.-]{5,}$/;
 
-export default function AuthForm() {
+export default function AuthForm({
+  setIsLoading,
+}: {
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+}) {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const [isActiveButton, setIsActiveButton] = useState<boolean>(false);
 
   async function sign(event: MouseEvent<HTMLButtonElement>) {
+    setIsLoading(true);
     event.preventDefault();
     try {
       await signIn("credentials", {
         email: emailRef?.current?.value,
         password: passwordRef?.current?.value,
+        callbackUrl: "/",
       });
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 

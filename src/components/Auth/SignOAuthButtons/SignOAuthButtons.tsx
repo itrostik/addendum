@@ -3,22 +3,36 @@ import google from "/public/google.svg";
 import github from "/public/github.svg";
 
 import styles from "./SignOAuthButtons.module.scss";
-import { getProviders, signIn } from "next-auth/react";
-import { useEffect } from "react";
+import { signIn } from "next-auth/react";
+import { Dispatch, SetStateAction } from "react";
 
-export const SignOAuthButtons = () => {
-  useEffect(() => {
-    const getProv = async () => {
-      console.log(await getProviders());
-    };
-    getProv();
-  }, []);
+export const SignOAuthButtons = ({
+  setIsLoading,
+}: {
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+}) => {
   return (
     <div className={styles.buttons}>
-      <button onClick={() => signIn("google")} className={styles.button}>
+      <button
+        onClick={() => {
+          setIsLoading(true);
+          signIn("google", {
+            callbackUrl: "/",
+          });
+        }}
+        className={styles.button}
+      >
         <Image src={google} alt={"google"} />
       </button>
-      <button onClick={() => signIn("github")} className={styles.button}>
+      <button
+        onClick={() => {
+          setIsLoading(true);
+          signIn("github", {
+            callbackUrl: "/",
+          });
+        }}
+        className={styles.button}
+      >
         <Image src={github} alt={"github"} />
       </button>
     </div>

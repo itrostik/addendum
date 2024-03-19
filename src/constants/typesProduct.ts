@@ -1,1 +1,1 @@
-export const typesProduct = ["Продажа", "Аукцион", "Обмен"];
+export const TYPES_PRODUCT = ["Продажа", "Аукцион", "Обмен"];

@@ -1,20 +1,20 @@
+"use client";
 import styles from "./Home.module.scss";
 import { useEffect, useState } from "react";
 import Sidebar from "@/components/Global/Sidebar/Sidebar";
-import Loading from "@/components/Global/Loading/Loading";
 import Filter from "@/components/Global/Filter/Filter";
 import { Plus } from "lucide-react";
 import Modal from "@/components/UI/Modal/Modal";
 import Link from "next/link";
-import useUser from "@/hooks/useUser";
 import { useSession } from "next-auth/react";
+import { useUser } from "@/hooks/useUser";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const { data } = useSession();
+  const user = useUser();
 
-  console.log(data);
+  console.log(user);
 
   return (
     <>

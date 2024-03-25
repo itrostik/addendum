@@ -1,7 +1,8 @@
 export type UserType = {
+  id: string;
   avatar: string;
   email: string;
-  password_hash?: string;
   name: string;
-  provider: string;
+  description: string;
+  like_genres: string[];
 };

@@ -1,8 +1,6 @@
-import NextAuth from "next-auth";
+import NextAuth, { Profile, Session } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import CredentialsProvider from "next-auth/providers/credentials";
-import { getPasswordHash } from "@/utils/getPasswordHash";
 import { DEFAULT_USER_AVATAR } from "@/constants/defaultUserAvatar";
 
 import type { NextAuthOptions } from "next-auth";
@@ -12,7 +10,15 @@ import { db } from "../../../../../firebase/firestore";
 
 import { v4 } from "uuid";
 import { isUserExists } from "@/utils/isUserExists";
-import { checkPasswordHash } from "@/utils/checkPasswordHash";
+import { AdapterUser } from "next-auth/adapters";
+import { UserType } from "@/types/userType";
+
+type SignInType = {
+  profile?: Profile & {
+    avatar_url: string;
+    picture: string;
+  };
+};
 
 const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
@@ -29,64 +35,34 @@ const handler = NextAuth({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
-    CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        email: { label: "Email", type: "email", placeholder: "email" },
-        password: { label: "Password", type: "password", placeholder: "*****" },
-        avatar: { label: "Avatar", type: "image", placeholder: "" },
-      },
-      async authorize(credentials) {
-        if (credentials && credentials.email && credentials.password) {
-          const user = await isUserExists(credentials.email, "credentials");
-          const uuid = v4();
-          const userData = {
-            id: uuid,
-            name: credentials.email,
-            email: credentials.email,
-            password_hash: await getPasswordHash(credentials!.password),
-            avatar: user?.avatar || DEFAULT_USER_AVATAR,
-            provider: "credentials",
-          };
-
-          if (user && user.password_hash) {
-            if (
-              await checkPasswordHash(user.password_hash, credentials.password)
-            ) {
-              return userData;
-            } else throw new Error("Invalid credentials");
-          } else {
-            await setDoc(doc(db, "users", uuid), userData);
-            return userData;
-          }
-        }
-        return null;
-      },
-    }),
   ],
   callbacks: {
-    async session({ session }) {
-      if (!session.user.image) session.user.image = DEFAULT_USER_AVATAR;
+    async session({ user, session }: { user: AdapterUser; session: Session }) {
+      console.log(user, session);
+      if (session.user && !session.user.image)
+        session.user.image = DEFAULT_USER_AVATAR;
       return session;
     },
-
-    async signIn({ account, profile }) {
-      if (account?.type === "oauth" && profile && profile.email) {
-        console.log(profile);
-        const user = await isUserExists(profile.email, "OAuth");
-
-        const avatar = profile.avatar_url || profile.picture;
-
-        if (!user) {
+    // @ts-ignore
+    async signIn({ profile }: SignInType) {
+      if (profile && profile.email) {
+        if (!(await isUserExists(profile.email))) {
           const uuid = v4();
-          const userData = {
+          let avatar =
+            profile.avatar_url || profile.picture || DEFAULT_USER_AVATAR;
+
+          if (avatar === profile.picture) {
+            avatar = profile.picture.split("=")[0];
+          }
+          const userData: UserType = {
             id: uuid,
-            name: profile.name,
+            name: profile.name || profile.email,
             email: profile.email,
             avatar,
-            provider: "OAuth",
+            description: "",
+            like_genres: [],
           };
-          await setDoc(doc(db, "users", uuid), userData);
+          await setDoc(doc(db, "users", profile.email), userData);
         }
       }
       return true;

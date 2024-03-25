@@ -3,38 +3,46 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import star from "/public/star.svg";
 import { Pencil } from "lucide-react";
-export default function Profile({ user }) {
-  const [isAuthor, setIsAuthor] = useState<boolean>(false);
-  // useEffect(() => {
-  //   const getUser = async () => {
-  //     if (userId === user._id) setIsAuthor(true);
-  //   };
-  //   if (isAuthenticated) {
-  //     getUser();
-  //   }
-  // }, [isAuthenticated, user._id]);
+import { useUser } from "@/hooks/useUser";
+import { DEFAULT_USER_AVATAR } from "@/constants/defaultUserAvatar";
 
+export default function Profile({ userId }: { userId: string }) {
+  const [isAuthor, setIsAuthor] = useState<boolean>(false);
+  const user = useUser();
+  useEffect(() => {
+    const getUser = async () => {
+      if (userId === user?.id) setIsAuthor(true);
+    };
+    getUser();
+  }, [user?.id]);
+  console.log(user);
   return (
     <div className={styles.wrapper}>
       <div className={styles.info}>
-        <div className={styles.name}>{user.name ? user.name : user.email}</div>
+        {user && (
+          <div className={styles.name}>
+            {user.name ? user.name : user.email}
+          </div>
+        )}
         <div className={styles.review}>
-          <span>{user.review ? user.review : "Нет отзывов"}</span>
+          {/*<span>{user.review ? user.review : "Нет отзывов"}</span>*/}
           <Image src={star} alt={"star"} width={20} height={20} />
         </div>
       </div>
-      <span className={styles.description}>{user.description}</span>
-      <Image
-        src={user.avatar}
-        alt={"avatar"}
-        width={400}
-        height={400}
-        priority
-        className={styles.logo}
-      />
+      <span className={styles.description}>{user && user.description}</span>
+      {user && (
+        <Image
+          src={user.avatar ? user.avatar : DEFAULT_USER_AVATAR}
+          alt={"avatar"}
+          width={400}
+          height={400}
+          priority
+          className={styles.logo}
+        />
+      )}
       <span className={styles.title}>Любимые жанры</span>
       <div className={styles.genres}>
-        {user.like_genres.length > 0 ? (
+        {user && user.like_genres.length > 0 ? (
           user.like_genres.map((genre) => (
             <div key={genre} className={styles.genre}>
               {genre}

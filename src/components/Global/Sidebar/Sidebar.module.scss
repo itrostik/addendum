@@ -4,6 +4,7 @@
   justify-content: space-between;
   align-items: flex-start;
   height: 100%;
+  min-width: fit-content;
 }
 
 .wrapperClose {
@@ -12,6 +13,7 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  width: fit-content;
 }
 
 .logo {
@@ -103,7 +105,6 @@
   gap: 5px;
   padding: 5px;
   border-radius: 5px;
-  max-width: 150px;
   .lucide {
     color: #6f6f6f;
   }
@@ -119,4 +120,11 @@
 
 .title {
   font-size: 14px;
+}
+
+.name {
+  font-size: 14px;
+  width: 100%;
+  display: block;
+  white-space: nowrap;
 }

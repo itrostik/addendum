@@ -13,16 +13,11 @@ import {
   Settings,
 } from "lucide-react";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
-import { DEFAULT_USER_AVATAR } from "@/constants/defaultUserAvatar";
-import { useUser } from "@/hooks/useUser";
+import { UserType } from "@/types/userType";
 
-export default function Sidebar() {
+export default function Sidebar({ user }: { user: UserType | undefined }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  const user = useUser();
-
   return (
     <div className={isOpen ? styles.wrapper : styles.wrapperClose}>
       <div className={isOpen ? styles.topOpen : styles.top}>
@@ -68,7 +63,7 @@ export default function Sidebar() {
               height={30}
               className={styles.avatar}
             />
-            {isOpen && <span className={styles.title}>{user.name}</span>}
+            {isOpen && <span className={styles.name}>{user.name}</span>}
           </Link>
         ) : (
           <Image

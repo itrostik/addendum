@@ -10,7 +10,11 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: '**.**.org'
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: '**.**.cloud'
+      },
     ],
   },
 };

@@ -10,13 +10,12 @@ import { db } from "../../../../../firebase/firestore";
 
 import { v4 } from "uuid";
 import { isUserExists } from "@/utils/isUserExists";
-import { AdapterUser } from "next-auth/adapters";
 import { UserType } from "@/types/userType";
 
 type SignInType = {
   profile?: Profile & {
-    avatar_url: string;
-    picture: string;
+    avatar_url?: string;
+    picture?: string;
   };
 };
 
@@ -37,8 +36,7 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    async session({ user, session }: { user: AdapterUser; session: Session }) {
-      console.log(user, session);
+    async session({ session }: { session: Session }) {
       if (session.user && !session.user.image)
         session.user.image = DEFAULT_USER_AVATAR;
       return session;
@@ -61,6 +59,7 @@ const handler = NextAuth({
             avatar,
             description: "",
             like_genres: [],
+            review: 0,
           };
           await setDoc(doc(db, "users", profile.email), userData);
         }

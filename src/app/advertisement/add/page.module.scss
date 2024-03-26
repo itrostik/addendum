@@ -39,9 +39,12 @@
   width: 100%;
 }
 .games {
-  width: 100%;
+  flex: 1 1 auto;
+}
+
+.skeleton {
   display: flex;
   flex-wrap: wrap;
+  gap: 20px;
   justify-content: center;
-  gap: 10px 20px;
 }

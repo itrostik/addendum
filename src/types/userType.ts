@@ -5,4 +5,5 @@ export type UserType = {
   name: string;
   description: string;
   like_genres: string[];
+  review: number;
 };

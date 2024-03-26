@@ -1,0 +1,26 @@
+.wrapper {
+  width: 200px;
+  height: 200px;
+  background: #1a1a1a;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton {
+  width: 20px;
+  height: 100%;
+  background: #343434;
+  position: absolute;
+  animation: 1s rotateSkeleton infinite;
+}
+
+@keyframes rotateSkeleton {
+  0% {
+    top: 0;
+    left: 0;
+  }
+  100% {
+    top: auto;
+    left: 100%;
+  }
+}

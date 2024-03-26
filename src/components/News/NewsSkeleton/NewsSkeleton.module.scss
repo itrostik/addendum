@@ -1,0 +1,76 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.author {
+  display: flex;
+  gap: 10px;
+}
+
+.info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.infoTop {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  background: #1a1a1a;
+  height: 20px;
+  width: 400px;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.image {
+  width: 45px;
+  height: 45px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.date {
+  font-size: 14px;
+  background: #1a1a1a;
+  height: 10px;
+  width: 200px;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.advertisement {
+  background: #1a1a1a;
+  border-radius: 5px;
+  height: 70px;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton {
+  width: 20px;
+  height: 100%;
+  background: #343434;
+  position: absolute;
+  animation: 1s rotateSkeleton infinite;
+}
+
+@keyframes rotateSkeleton {
+  0% {
+    top: 0;
+    left: 0;
+  }
+  100% {
+    top: auto;
+    left: 100%;
+  }
+}
